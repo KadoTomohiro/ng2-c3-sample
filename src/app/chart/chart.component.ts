@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import * as c3 from 'c3';
 
 @Component({
@@ -8,11 +8,15 @@ import * as c3 from 'c3';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('chart') chart: ElementRef;
+  constructor() {
+
+  }
 
   ngOnInit() {
+    let chartArea = this.chart.nativeElement;
     c3.generate({
-      bindto: '#chart',
+      bindto: chartArea,
       data: {
         columns: [
           ['data1', 30, 200, 100, 400, 150, 250],
